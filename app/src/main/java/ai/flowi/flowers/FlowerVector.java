@@ -1,11 +1,24 @@
 package ai.flowi.flowers;
 
-import ai.flowi.data.InputVector;
+import ai.flowi.data.Vector;
 
-public class FlowerVector implements InputVector<FlowerVector> {
+public class FlowerVector implements Vector<FlowerVector> {
     private double[] dimensions;
 
     public FlowerVector(double sepalLength, double sepalWidth, double petalLength, double petalWidth) {
+        if (sepalLength  <= 0){
+            throw new IllegalArgumentException("El largo del sépalo debe ser mayor que 0");
+        }
+        if (sepalWidth  <= 0){
+            throw new IllegalArgumentException("El ancho del sépalo debe ser mayor que 0");
+        }
+        if (petalLength  <= 0){
+            throw new IllegalArgumentException("El largo de los pétalos debe ser mayor que 0");
+        }
+        if (petalWidth  <= 0){
+            throw new IllegalArgumentException("El ancho de los pétalos debe ser mayor que 0");
+        }
+
         dimensions = new double[] { sepalLength, sepalWidth, petalLength, petalWidth };
     }
 
@@ -20,8 +33,16 @@ public class FlowerVector implements InputVector<FlowerVector> {
     }
 
     @Override
-    public void setDimension(double value, int axis) {
-        dimensions[axis] = value;
+    public void setDimension(double value, int axis) throws IllegalArgumentException {
+        if (axis >= 0 && axis < 3)
+            dimensions[axis] = value;
+        throw new IllegalArgumentException("El índice debe encontrarse entre 0 y 3. Actual: " + axis);
     }
 
+    @Override
+    public double get(int axis) throws IllegalArgumentException {
+        if (axis >= 0 && axis < 3)
+            return dimensions[axis];
+        throw new IllegalArgumentException("El índice debe encontrarse entre 0 y 3. Actual: " + axis);
+    }
 }

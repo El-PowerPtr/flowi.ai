@@ -2,10 +2,10 @@ package ai.flowi.som;
 
 import java.util.ArrayList;
 
-import ai.flowi.som.SOMNeuron;
-import ai.flowi.data.InputVector;
+import ai.flowi.data.Data;
+import ai.flowi.data.Vector;
 
-public class SOM<V extends InputVector<V>, L> {
+public class SOM<V extends Vector<V>, L> {
     private final long iterations;
 
     private double learningRate;
@@ -14,15 +14,17 @@ public class SOM<V extends InputVector<V>, L> {
     private int neighbourHoodRadius;
     private final int maxNeighbourHoodRadius;
 
-    private ArrayList<SOMNeuron<V, L>> input;
+    private ArrayList<SOMNeuron<V>> neurons;
 
     public SOM(long iterations, double learningRate, double maxLearningRate, int neighbourHoodRadius,
-            int maxNeighbourHoodRadius, ArrayList<SOMNeuron<V,L>> input) {
+            int maxNeighbourHoodRadius, ArrayList<SOMNeuron<V>> neurons) {
         this.iterations = iterations;
         this.learningRate = learningRate;
         this.maxLearningRate = maxLearningRate;
         this.neighbourHoodRadius = neighbourHoodRadius;
         this.maxNeighbourHoodRadius = maxNeighbourHoodRadius;
-        this.input = input;
+        this.neurons = neurons;
     }
+
+    public void changeWeights(Data<V,L> data, SOMNeuron<V> )
 }

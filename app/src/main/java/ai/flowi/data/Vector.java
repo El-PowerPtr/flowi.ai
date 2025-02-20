@@ -6,15 +6,18 @@ package ai.flowi.data;
  * another vector that is encouraged to be of the same type.
  * 
  * @type T the type of the vector (must be the same as the implementor)
+ * @type L the label
  */
-public interface InputVector<T extends InputVector<T>> {
+public interface Vector<T extends Vector<T>> {
 
     /**
      * Euclidean distance between two vectors
      * 
      * @param other the other vector
      */
-    public double distance(T other);
+    double distance(T other);
+
+    double get(int axis);
 
     void setDimension(double value, int axis);
 }

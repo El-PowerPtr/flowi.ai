@@ -1,14 +1,12 @@
 package ai.flowi.som;
 
-import ai.flowi.data.InputVector;
+import ai.flowi.data.Vector;
 
-public class SOMNeuron<V extends InputVector<V>, L> {
+public class SOMNeuron<V extends Vector<V>> implements Vector<V> {
     public V vector;
-    public L label;
 
-    public SOMNeuron(V vector, L label) {
+    public SOMNeuron(V vector) {
         this.vector = vector;
-        this.label = label;
     }
 
     // Getters ------------------------------------------------------------------
@@ -16,19 +14,18 @@ public class SOMNeuron<V extends InputVector<V>, L> {
         return vector;
     }
 
-        public L getLabel() {
-        return label;
-    }
-    //---------------------------------------------------------------------------
-
-    //Setters -------------------------------------------------------------------
+    // Setters -------------------------------------------------------------------
     public void setVector(V vector) {
         this.vector = vector;
     }
 
-
-    public void setLabel(L label) {
-        this.label = label;
+    @Override
+    public double distance(V other) {
+        return vector.distance(other);
     }
-    //---------------------------------------------------------------------------
+
+    @Override
+    public void setDimension(double value, int axis) {
+        vector.setDimension(value, axis);
+    }
 }
