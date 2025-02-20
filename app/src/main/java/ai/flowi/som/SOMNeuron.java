@@ -28,4 +28,14 @@ public class SOMNeuron<V extends Vector<V>> implements Vector<V> {
     public void setDimension(double value, int axis) {
         vector.setDimension(value, axis);
     }
+
+    @Override
+    public double get(int axis) {
+        return vector.get(axis);
+    }
+
+    @Override
+    public int size(){
+        return vector.size();
+    }
 }

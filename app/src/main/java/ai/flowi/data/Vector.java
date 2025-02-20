@@ -17,7 +17,12 @@ public interface Vector<T extends Vector<T>> {
      */
     double distance(T other);
 
+    /**
+     * Gets a dimension of the vector
+     */
     double get(int axis);
+
+    int size();
 
     void setDimension(double value, int axis);
 }
