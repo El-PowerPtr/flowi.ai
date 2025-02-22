@@ -1,8 +1,9 @@
 package ai.flowi.som;
 
 import ai.flowi.data.Vector;
+import ai.flowi.data.VectorHolder;
 
-public class SOMNeuron<V extends Vector<V>> implements Vector<V> {
+public class SOMNeuron<V extends Vector<V>> implements VectorHolder<V> {
     public V vector;
 
     public SOMNeuron(V vector) {
@@ -20,11 +21,6 @@ public class SOMNeuron<V extends Vector<V>> implements Vector<V> {
     }
 
     @Override
-    public double distance(V other) {
-        return vector.distance(other);
-    }
-
-    @Override
     public void setDimension(double value, int axis) {
         vector.setDimension(value, axis);
     }
@@ -35,7 +31,12 @@ public class SOMNeuron<V extends Vector<V>> implements Vector<V> {
     }
 
     @Override
-    public int size(){
+    public int size() {
         return vector.size();
+    }
+
+    @Override
+    public double distance(VectorHolder<V> other) {
+        return vector.distance(other.getVector());
     }
 }
