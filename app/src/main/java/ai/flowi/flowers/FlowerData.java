@@ -1,8 +1,8 @@
 package ai.flowi.flowers;
 
-import ai.flowi.data.Data;
+import ai.flowi.data.InputData;
 
-public class FlowerData extends Data<FlowerVector, String> {
+public class FlowerData extends InputData<FlowerVector, String> {
 
     public FlowerData(FlowerVector vector, String label) {
         this.vector = vector;
