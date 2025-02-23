@@ -1,10 +1,13 @@
 package ai.flowi.som;
 
+import java.util.ArrayList;
+
 import ai.flowi.data.Vector;
 import ai.flowi.data.VectorHolder;
 
 public class SOMNeuron<V extends Vector<V>> implements VectorHolder<V> {
-    public V vector;
+    private V vector;
+    private ArrayList<SOMNeuron<V>> neighbourHood;
 
     public SOMNeuron(V vector) {
         this.vector = vector;
@@ -39,4 +42,13 @@ public class SOMNeuron<V extends Vector<V>> implements VectorHolder<V> {
     public double distance(VectorHolder<V> other) {
         return vector.distance(other.getVector());
     }
+
+    public ArrayList<SOMNeuron<V>> getNeighbourHood() {
+        return neighbourHood;
+    }
+
+    public void setNeighbourHood(ArrayList<SOMNeuron<V>> neighbourHood) {
+        this.neighbourHood = neighbourHood;
+    }
+
 }
