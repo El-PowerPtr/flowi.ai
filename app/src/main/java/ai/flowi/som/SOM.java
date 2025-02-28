@@ -56,18 +56,34 @@ public class SOM<V extends Vector<V>, L> {
         for (int iteration = 0; iteration < iterations && bmuChanged; iteration++) {
             bmuChanged = false;
             for (int i = 0; i < input.size(); i++) {
-                var data = input.get(i);
-                var bestMatchingUnit = getBMU(data);
+                InputData<V, L> data = input.get(i);
+                SOMNeuron<V> bestMatchingUnit = getBMU(data);
                 if (bestMatchingUnit != data.getBestMatchingUnit()) {
                     data.setBestMatchingUnit(bestMatchingUnit);
                     bmuChanged = true;
                 }
-                var neighbourHood = bestMatchingUnit.getNeighbourHood();
+                ArrayList<SOMNeuron<V>> neighbourHood = bestMatchingUnit.getNeighbourHood();
                 changeWeights(data, bestMatchingUnit, iteration);
                 for (int j = 0; j < 4; j++) {
                     changeWeights(data, bestMatchingUnit, neighbourHood.get(j), iteration);
                 }
             }
         }
+    }
+
+    public long getIterations() {
+        return iterations;
+    }
+
+    public double getMaxLearningRate() {
+        return maxLearningRate;
+    }
+
+    public ArrayList<SOMNeuron<V>> getNeurons() {
+        return neurons;
+    }
+
+    public ArrayList<InputData<V, L>> getInput() {
+        return input;
     }
 }

@@ -26,11 +26,7 @@ dependencies {
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
-    }
-}
+java { toolchain { languageVersion = JavaLanguageVersion.of(22) } }
 
 application {
     // Define the main class for the application.
@@ -41,3 +37,4 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+

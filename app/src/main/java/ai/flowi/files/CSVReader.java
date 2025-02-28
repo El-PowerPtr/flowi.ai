@@ -23,13 +23,18 @@ public class CSVReader implements AutoCloseable {
 
     public List<String[]> read() throws IOException {
         return reader.lines()
-                .map(l -> l.split(","))
+                .skip(1)
+                .map(x -> x.split(","))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void close() throws IOException {
         reader.close();
+    }
+
+    public BufferedReader getReader(){
+        return reader;
     }
 
 }
